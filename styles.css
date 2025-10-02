@@ -1,68 +1,77 @@
-/* styles.css */
-body {
-    font-family: Arial, sans-serif;
+/* Reset some default browser styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #f4f6f8;
     color: #333;
-}
-
-header {
-    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Header */
+  header {
+    background: #1e3a8a; /* deep blue */
     color: white;
-    padding: 1rem 2rem;
+    padding: 1.5rem;
     text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
-}
-
-.container {
-    max-width: 1200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+  
+  header nav a {
+    color: #facc15; /* yellow accent */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  header nav a:hover {
+    color: #fff176;
+  }
+  
+  /* Content */
+  .container {
+    flex: 1;
+    max-width: 800px;
     margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.project {
+    padding: 2rem;
     background: white;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.project h2 {
-    margin: 0 0 0.5rem;
-}
-
-.project p {
-    margin: 0.5rem 0;
-}
-
-.project a {
-    color: #007acc;
-    text-decoration: none;
-}
-
-.project a:hover {
-    text-decoration: underline;
-}
-
-footer {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .container p {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  /* Footer */
+  footer {
+    background: #1e293b; /* dark gray-blue */
+    color: #ddd;
     text-align: center;
     padding: 1rem;
-    background-color: #282c34;
-    color: white;
-    margin-top: 2rem;
-}
-
-footer a {
-    color: #61dafb;
+    font-size: 0.9rem;
+  }
+  
+  footer a {
+    color: #60a5fa; /* light blue */
     text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
+    transition: color 0.3s ease;
+  }
+  
+  footer a:hover {
+    color: #93c5fd;
+  }
+  
