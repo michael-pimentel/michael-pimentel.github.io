@@ -3,46 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Projects</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Michael Pimentel - Software Developer Portfolio">
+    <title>Michael Pimentel's Portfolio</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>My GitHub Projects</h1>
-        <p>Explore my projects hosted on GitHub</p>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Michael Pimentel</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="mailto:mpimmjc@gmail.com" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero / About Section -->
+    <header id="about" class="hero-section fade-in">
+        <div class="container">
+            <h1 class="hero-title">Building digital experiences<br>that matter.</h1>
+            <p class="hero-subtitle">
+                
+            </p>
+            <a href="#projects" class="btn-primary">View My Work</a>
+        </div>
     </header>
-    <div class="container">
-        <!-- JavaScript will populate this section with projects -->
-    </div>
+
+    <!-- Projects Section -->
+    <main id="projects" class="container projects-section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">Selected Projects</h2>
+            <span class="section-label">Portfolio 2026</span>
+        </div>
+
+        <!-- Grid populated by JS -->
+        <div id="projects-grid" class="projects-grid">
+            <!-- Loading state handled in JS -->
+        </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
-        <p>Made with ❤️ by <a href="https://github.com/michael-pimentel"><michael-pimentel></michael-pimentel></a></p>
+        <div class="container footer-content">
+            <div class="social-links">
+                <a href="https://github.com/michael-pimentel" target="_blank" class="social-link">GitHub</a>
+                <a href="mailto:mpimmjc@gmail.com" class="social-link">Email</a>
+                <a href="https://www.linkedin.com/in/michael--pimentel/" class="social-link">LinkedIn</a>
+            </div>
+        </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/projects.js"></script>
     <script>
-        async function fetchGitHubProjects() {
-            const username = "michael-pimentel"; // Replace with your GitHub username
-            const container = document.querySelector('.container');
-
-            try {
-                const response = await fetch(`https://api.github.com/users/${username}/repos`);
-                const repos = await response.json();
-
-                repos.forEach(repo => {
-                    const project = document.createElement('div');
-                    project.className = 'project';
-                    project.innerHTML = `
-                        <h2>${repo.name}</h2>
-                        <p>${repo.description || "No description provided."}</p>
-                        <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-                    `;
-                    container.appendChild(project);
-                });
-            } catch (error) {
-                container.innerHTML = '<p>Failed to load projects. Please try again later.</p>';
-                console.error('Error fetching repos:', error);
-            }
-        }
-
-        fetchGitHubProjects();
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>
