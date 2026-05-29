@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Michael Pimentel - Software Developer">
+    <title>About — Michael Pimentel</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="mouse-glow"></div>
+
+    <div id="nav-placeholder"></div>
+
+    <header class="page-hero snap-section">
+        <div class="container">
+            <p class="hero-label fade-up">Get to know me</p>
+            <h1 class="hero-title fade-up delay-1">About Me</h1>
+        </div>
+    </header>
+
+    <!--
+        PHOTOS — drop your images into assets/photos/ then add them to the array below.
+        Each entry: { file: 'filename.jpg', caption: 'Your caption' }
+    -->
+    <script>
+    window.aboutPhotos = [
+        { file: 'young-michael.jpeg',  caption: 'Young me at the farm' },
+        { file: 'coding.jpeg',         caption: 'My desk set up at home :)' },
+        { file: 'ucsc-sculpture.jpeg', caption: 'Sitting on the Squiggle at Porter' },
+        { file: 'codestack-award.jpeg',caption: 'Me and my sister placing third at Stockton\'s H20 Hackathon' },
+        { file: 'sailing.jpeg',        caption: 'Sailing in the Santa Cruz Harbor with some friends' },
+        { file: 'hiking.jpeg',         caption: 'Hiking in Yosemite with my family' },
+        { file: 'with-tanisha.jpeg',   caption: 'Me and Tanisha ❤️' },
+    ];
+    </script>
+
+    <!-- Photo Strip — populated by photos.js -->
+    <section class="photo-section">
+        <div class="photo-strip-wrapper">
+            <div class="photo-strip" id="photo-strip"></div>
+        </div>
+        <p class="photo-hint" id="photo-hint"></p>
+    </section>
+
+    <!-- Bio -->
+    <section class="bio-section snap-section">
+        <div class="container bio-grid">
+
+            <div class="bio-block">
+                <span class="bio-eyebrow fade-up">// who i am</span>
+                <h2 class="fade-up delay-1">My Story</h2>
+                <p class="fade-up delay-2">Write 2–3 sentences about yourself here. Where are you from? What got you into software? What drives you?</p>
+                <p class="fade-up delay-3">This is your chance to show some personality. Don't just list facts — tell the reader something that sticks with them.</p>
+                <p class="fade-up delay-4">What do you believe in when it comes to building software? What kind of problems do you love solving?</p>
+            </div>
+
+            <div class="bio-block">
+                <span class="bio-eyebrow fade-up">// as a developer</span>
+                <h2 class="fade-up delay-1">How I Build</h2>
+                <p class="fade-up delay-2">Talk about your approach to software here. Are you detail-oriented? Do you love clean architecture? Full-stack or specialty?</p>
+                <p class="fade-up delay-3">Mention the kinds of projects that excite you — web apps, tooling, games, data, mobile, etc.</p>
+                <p class="fade-up delay-4">What are you focused on right now? What are you learning or exploring?</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills-section">
+        <div class="container">
+            <div class="skills-panel-full fade-up">
+                <span class="bio-eyebrow">// tech stack</span>
+                <h2>Tools I Work With</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">HTML &amp; CSS</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container cta-content fade-up">
+            <h2>See what I've built</h2>
+            <a href="/projects" class="btn-primary">View Projects →</a>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/clouds.js"></script>
+    <script src="../assets/js/photos.js"></script>
+    <script src="../assets/js/effects.js"></script>
+    <script src="../assets/js/weather.js"></script>
+    <script src="../assets/js/snap-scroll.js"></script>
+</body>
+</html>

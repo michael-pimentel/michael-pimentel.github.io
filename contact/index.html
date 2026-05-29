@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Michael Pimentel">
+    <title>Contact — Michael Pimentel</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="mouse-glow"></div>
+
+    <div id="nav-placeholder"></div>
+
+    <header class="page-hero snap-section">
+        <div class="container">
+            <p class="hero-label fade-up">Get in touch</p>
+            <h1 class="hero-title fade-up delay-1">Let's Talk</h1>
+            <p class="hero-subtitle fade-up delay-2">
+                Whether it's an opportunity, a project, or just a hello —
+                I'm always open to a good conversation.
+            </p>
+        </div>
+    </header>
+
+    <main class="contact-page-main">
+        <div class="container contact-page-grid">
+
+            <!-- Form -->
+            <div class="contact-form-wrap fade-up">
+                <form class="contact-form glass-panel" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="0a8bf8ea-338d-4f10-a3f9-87d4fd087170">
+                    <input type="hidden" name="subject" value="New message from portfolio">
+                    <input type="hidden" name="redirect" value="false">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Say whatever's on your mind." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary contact-submit">Send Message →</button>
+                </form>
+            </div>
+
+            <!-- Sidebar info -->
+            <div class="contact-sidebar">
+
+                <div class="contact-info-card glass-panel fade-up delay-2">
+                    <h3>Other ways to reach me</h3>
+                    <ul class="contact-links-list">
+                        <li>
+                            <span class="contact-link-label">Email</span>
+                            <a href="mailto:mpimmjc@gmail.com" class="contact-link-val">mpimmjc@gmail.com</a>
+                        </li>
+                        <li>
+                            <span class="contact-link-label">GitHub</span>
+                            <a href="https://github.com/michael-pimentel" target="_blank" class="contact-link-val">michael-pimentel</a>
+                        </li>
+                        <li>
+                            <span class="contact-link-label">LinkedIn</span>
+                            <a href="https://www.linkedin.com/in/michael--pimentel/" target="_blank" class="contact-link-val">michael--pimentel</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="contact-info-card glass-panel fade-up delay-3">
+                    <h3>Response time</h3>
+                    <p>I usually reply within a day or two. If it's urgent, email is your best bet.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/layout.js"></script>
+    <script src="../assets/js/clouds.js"></script>
+    <script src="../assets/js/effects.js"></script>
+    <script src="../assets/js/weather.js"></script>
+    <script src="../assets/js/snap-scroll.js"></script>
+</body>
+</html>

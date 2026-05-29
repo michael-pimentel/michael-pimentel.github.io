@@ -3,73 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Michael Pimentel - Software Developer Portfolio">
-    <title>Michael Pimentel's Portfolio</title>
-
-    <!-- CSS -->
+    <meta name="description" content="Michael Pimentel - Software Developer">
+    <title>Michael Pimentel</title>
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Sticky Navbar -->
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="#" class="logo">Michael Pimentel</a>
-            <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="mailto:mpimmjc@gmail.com" class="nav-link">Contact</a>
+    <div id="mouse-glow"></div>
+
+    <div id="nav-placeholder"></div>
+
+    <header class="hero-section hero-fullscreen snap-section">
+        <div class="container hero-content">
+            <p class="hero-label fade-up">Michael Pimentel</p>
+            <h1 class="hero-title fade-up delay-1">Software Engineer &<br>AI/ML Engineer</h1>
+            <p class="hero-subtitle fade-up delay-2">
+                I'm Michael, I design and build clean, purposeful software.
+                From side projects to AI/ML projects, I'm always trying learn and build new things.
+            </p>
+            <div class="hero-actions fade-up delay-3">
+                <a href="/about"    class="btn-primary">About Me</a>
+                <a href="/projects" class="btn-ghost">View Projects</a>
             </div>
         </div>
-    </nav>
 
-    <!-- Hero / About Section -->
-    <header id="about" class="hero-section fade-in">
-        <div class="container">
-            <h1 class="hero-title">Building digital experiences<br>that matter.</h1>
-            <p class="hero-subtitle">
-                
-            </p>
-            <a href="#projects" class="btn-primary">View My Work</a>
+        <!-- Scroll hint -->
+        <div class="scroll-hint fade-up">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
         </div>
     </header>
 
-    <!-- Projects Section -->
-    <main id="projects" class="container projects-section">
-        <div class="section-header fade-in">
-            <h2 class="section-title">Selected Projects</h2>
-            <span class="section-label">Portfolio 2026</span>
-        </div>
-
-        <!-- Grid populated by JS -->
-        <div id="projects-grid" class="projects-grid">
-            <!-- Loading state handled in JS -->
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="social-links">
-                <a href="https://github.com/michael-pimentel" target="_blank" class="social-link">GitHub</a>
-                <a href="mailto:mpimmjc@gmail.com" class="social-link">Email</a>
-                <a href="https://www.linkedin.com/in/michael--pimentel/" class="social-link">LinkedIn</a>
+    <section class="preview-solo snap-section">
+        <div class="container">
+            <div class="preview-solo-card fade-up">
+                <h3>Software Engineer</h3>
+                <p>Experience....</p>
+                <p class="preview-detail">Coursework that's shaped how I build:</p>
+                <ul class="preview-class-list">
+                    <li>Intro to Software Engineering</li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Scripts -->
-    <script src="assets/js/projects.js"></script>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    <section class="preview-solo snap-section">
+        <div class="container">
+            <div class="preview-solo-card fade-up">
+                <h3>AI/ML Engineer</h3>
+                <p>Working on NLP and LLMs for the past year.</p>
+                <p class="preview-detail">Classes I've taken in this space:</p>
+                <ul class="preview-class-list">
+                    <li>Intro to Natural Language Processing</li>
+                    <li>Machine Learning: Deep Learning</li>
+                    <li>Artificial Intelligence</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="preview-solo snap-section">
+        <div class="container">
+            <div class="preview-solo-card fade-up">
+                <h3>Skills and Frameworks</h3>
+                <p>Tools and languages I reach for most often when building projects.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">HTML &amp; CSS</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section snap-section">
+        <div class="container cta-content fade-up">
+            <h2>Want to see what I've built?</h2>
+            <a href="/projects" class="btn-primary">View My Projects →</a>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="assets/js/layout.js"></script>
+    <script src="assets/js/clouds.js"></script>
+    <script src="assets/js/effects.js"></script>
+    <script src="assets/js/weather.js"></script>
+    <script src="assets/js/snap-scroll.js"></script>
 </body>
-
 </html>
