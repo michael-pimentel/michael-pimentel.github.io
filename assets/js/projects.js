@@ -3,6 +3,22 @@
  * Fetches repositories from GitHub API and renders them as cards.
  */
 
+// Projects that live in private repos — added manually so they still show on the portfolio.
+// These are merged with GitHub results and support all the same fields.
+const manualProjects = [
+    {
+        name: 'AI-Insider-Loop',
+        displayName: 'AI Insider Loop',
+        description: 'A curated news and analysis platform covering AI research, product launches, policy shifts, and industry trends — your edge on everything artificial intelligence.',
+        homepage: 'https://aiinsiderloop.com',
+        language: 'TypeScript',
+        topics: ['next-js', 'ai', 'news', 'react'],
+        badge: null,
+        badgeColor: null,
+        isManual: true,
+    },
+];
+
 // Add custom descriptions here. Key = exact GitHub repo name.
 // These override whatever description is set on GitHub.
 const projectOverrides = {
@@ -69,10 +85,11 @@ async function fetchProjects() {
 
         // Pinned repos appear first in this order; the rest sort by last updated
         const pinnedOrder = [
+            'AI-Insider-Loop',
             'H2OHacks',
             'Open-Closed-Prediction-Model-Emilio-Michael',
-            'Code-Performance-Analyzer',
             'AutoApply',
+            'Code-Performance-Analyzer',
         ];
         const lastOrder = ['HackDay'];
         filteredProjects.sort((a, b) => {
@@ -97,8 +114,30 @@ async function fetchProjects() {
             return;
         }
 
+        // Merge manual projects
+        const allProjects = [...manualProjects, ...filteredProjects];
+
+        // Re-apply sort with manual projects included
+        allProjects.sort((a, b) => {
+            const aName = a.name;
+            const bName = b.name;
+            const ai = pinnedOrder.indexOf(aName);
+            const bi = pinnedOrder.indexOf(bName);
+            const aLast = lastOrder.includes(aName);
+            const bLast = lastOrder.includes(bName);
+            if (ai !== -1 && bi !== -1) return ai - bi;
+            if (ai !== -1) return -1;
+            if (bi !== -1) return 1;
+            if (aLast && bLast) return 0;
+            if (aLast) return 1;
+            if (bLast) return -1;
+            if (a.isManual) return -1;
+            if (b.isManual) return 1;
+            return new Date(b.updated_at) - new Date(a.updated_at);
+        });
+
         // Render Cards
-        filteredProjects.forEach((repo, index) => {
+        allProjects.forEach((repo, index) => {
             const card = createProjectCard(repo, index);
             container.appendChild(card);
         });
@@ -120,7 +159,7 @@ function createProjectCard(repo, index) {
     card.className = 'project-card fade-in';
     card.style.animationDelay = `${index * 0.1}s`;
 
-    const displayName = repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const displayName = repo.displayName || repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
     const lang = repo.language;
     const topics = repo.topics || [];
@@ -129,8 +168,10 @@ function createProjectCard(repo, index) {
     const tagsHtml = techStack.map(tag => `<span class="tech-tag">${escapeHtml(tag)}</span>`).join('');
 
     const override = projectOverrides[repo.name] || {};
-    const description = override.description || repo.description || 'No description provided.';
-    const badgeHtml = override.badge ? `<span class="project-badge${override.badgeColor ? ` badge-${override.badgeColor}` : ''}">${escapeHtml(override.badge)}</span>` : '';
+    const description = repo.isManual ? repo.description : (override.description || repo.description || 'No description provided.');
+    const badge = repo.isManual ? repo.badge : override.badge;
+    const badgeColor = repo.isManual ? repo.badgeColor : override.badgeColor;
+    const badgeHtml = badge ? `<span class="project-badge${badgeColor ? ` badge-${badgeColor}` : ''}">${escapeHtml(badge)}</span>` : '';
     const liveUrl = repo.homepage;
     const detailUrl = `/work/?repo=${encodeURIComponent(repo.name)}`;
 
