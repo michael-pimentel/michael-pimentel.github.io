@@ -785,12 +785,34 @@ footer {
     padding-left: 1.1rem;
     position: relative;
     line-height: 1.5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.65rem;
 }
 .preview-class-list li::before {
     content: '→';
     position: absolute;
     left: 0;
     color: rgba(255,255,255,0.35);
+}
+.preview-class-name {
+    color: var(--text-main);
+}
+.preview-class-name::after {
+    content: '·';
+    margin-left: 0.65rem;
+    color: rgba(255,255,255,0.35);
+}
+.preview-class-list a,
+.preview-class-project {
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.preview-class-list a:hover,
+.preview-class-project:hover {
+    color: var(--primary);
 }
 
 /* snap-section is just a JS marker class — no layout overrides */
