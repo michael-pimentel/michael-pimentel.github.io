@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchProjects() {
     const container = document.getElementById('projects-grid');
     const username = 'michael-pimentel';
+    const repoBlocklist = ['michael-pimentel.github.io'];
     const forkAllowlist = [
         'Open-Closed-Prediction-Model-Emilio-Michael',
         'Code-Performance-Analyzer',
@@ -40,6 +41,7 @@ async function fetchProjects() {
         // 2. Not a fork (unless significant)
         // 3. OPTIONAL: Filter by topic if you want to curate (uncomment the topic check below)
         const filteredProjects = repos.filter(repo => {
+            if (repoBlocklist.includes(repo.name)) return false;
             if (forkAllowlist.includes(repo.name)) return true;
             return !repo.fork;
         });
