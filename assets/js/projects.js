@@ -3,6 +3,27 @@
  * Fetches repositories from GitHub API and renders them as cards.
  */
 
+// Add custom descriptions here. Key = exact GitHub repo name.
+// These override whatever description is set on GitHub.
+const projectOverrides = {
+    'Open-Closed-Prediction-Model-Emilio-Michael': {
+        description: 'A machine learning model built with Emilio to predict whether a business is open or closed based on real-world data.',
+        badge: 'Internship Project',
+        badgeColor: 'blue',
+    },
+    'H2OHacks': {
+        badge: 'Hackathon Finalist',
+    },
+    'Code-Performance-Analyzer': {
+        description: 'A tool that analyzes and benchmarks code performance, helping identify bottlenecks and optimize runtime efficiency.',
+    },
+    'HackDay': {
+        description: 'A project built during a hackathon, showcasing rapid prototyping and creative problem solving under a time constraint.',
+    },
+    // Add more overrides below as needed:
+    // 'repo-name': { description: 'Your custom description here.', badge: 'Award name' },
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchProjects();
 });
@@ -46,8 +67,27 @@ async function fetchProjects() {
             return !repo.fork;
         });
 
-        // Sort by Last Updated
-        filteredProjects.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+        // Pinned repos appear first in this order; the rest sort by last updated
+        const pinnedOrder = [
+            'H2OHacks',
+            'Open-Closed-Prediction-Model-Emilio-Michael',
+            'Code-Performance-Analyzer',
+            'AutoApply',
+        ];
+        const lastOrder = ['HackDay'];
+        filteredProjects.sort((a, b) => {
+            const ai = pinnedOrder.indexOf(a.name);
+            const bi = pinnedOrder.indexOf(b.name);
+            const aLast = lastOrder.includes(a.name);
+            const bLast = lastOrder.includes(b.name);
+            if (ai !== -1 && bi !== -1) return ai - bi;
+            if (ai !== -1) return -1;
+            if (bi !== -1) return 1;
+            if (aLast && bLast) return 0;
+            if (aLast) return 1;
+            if (bLast) return -1;
+            return new Date(b.updated_at) - new Date(a.updated_at);
+        });
 
         // Clear loading
         container.innerHTML = '';
@@ -88,7 +128,9 @@ function createProjectCard(repo, index) {
     techStack = [...new Set([...techStack, ...topics])].slice(0, 4);
     const tagsHtml = techStack.map(tag => `<span class="tech-tag">${escapeHtml(tag)}</span>`).join('');
 
-    const description = repo.description || 'No description provided.';
+    const override = projectOverrides[repo.name] || {};
+    const description = override.description || repo.description || 'No description provided.';
+    const badgeHtml = override.badge ? `<span class="project-badge${override.badgeColor ? ` badge-${override.badgeColor}` : ''}">${escapeHtml(override.badge)}</span>` : '';
     const liveUrl = repo.homepage;
     const detailUrl = `/work/?repo=${encodeURIComponent(repo.name)}`;
 
@@ -109,6 +151,7 @@ function createProjectCard(repo, index) {
             <div class="folder-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
             </div>
+            ${badgeHtml}
         </div>
         <div class="card-content">
             <h3 class="project-title">${escapeHtml(displayName)}</h3>

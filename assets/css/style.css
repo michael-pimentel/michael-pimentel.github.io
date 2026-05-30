@@ -1039,6 +1039,29 @@ footer {
 }
 .detail-date { font-size: 0.78rem; color: var(--text-muted); }
 
+.project-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255, 200, 80, 0.18), rgba(255, 140, 50, 0.18));
+    border: 1px solid rgba(255, 190, 80, 0.35);
+    color: #f5c842;
+}
+.project-badge.badge-blue {
+    background: linear-gradient(135deg, rgba(80, 160, 255, 0.18), rgba(50, 100, 255, 0.18));
+    border: 1px solid rgba(80, 160, 255, 0.35);
+    color: #6ab4ff;
+}
+.detail-hero-badge {
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+}
+
 .detail-title {
     font-size: clamp(2.2rem, 5vw, 3.5rem);
     margin-bottom: 1rem;

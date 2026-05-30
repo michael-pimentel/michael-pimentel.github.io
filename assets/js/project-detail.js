@@ -1,3 +1,85 @@
+// Custom content per project. Key = exact GitHub repo name.
+// `about`       — HTML string describing the project (paragraphs, lists, etc.)
+// `screenshots` — array of objects: { src, alt, caption? }
+//                 src can be a relative path (assets/img/...) or any URL
+// Custom content per project. Key = exact GitHub repo name.
+// `about`       — HTML string describing the project (paragraphs, lists, etc.)
+// `screenshots` — array of objects: { src, alt, caption? }
+//                 src can be a relative path (assets/img/...) or any URL
+const projectDetails = {
+    'AutoApply': {
+        about: `
+            <p>AutoApply streamlines the job application process by automating the repetitive parts — filling out forms, tracking submissions, and keeping everything organized in one place.</p>
+            <p>Built with TypeScript, the app lets you store your profile once and apply to multiple positions without re-entering the same information. The live version is deployed on Vercel.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'AutoApply dashboard', caption: 'Application tracker view' },
+        ],
+    },
+    'BookType': {
+        about: `
+            <p>BookType is a typing practice app with a twist — instead of random words, you type out passages from real books. It's a way to build speed and focus while actually reading something worth reading.</p>
+            <p>Built with TypeScript. Choose a book, start typing, and get real-time feedback on accuracy and words per minute.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'BookType typing interface', caption: 'Live typing session' },
+        ],
+    },
+    'finance-claw': {
+        about: `
+            <p>Built for the OpenClaw Hackathon hosted by NVIDIA and UCSC, finance-claw is a financial tool that helps users get a clearer picture of their money.</p>
+            <p>The project was scoped, designed, and shipped within the hackathon window. It was a great exercise in building something useful under a hard deadline with a focused team.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'Finance Claw UI', caption: 'Main dashboard' },
+        ],
+    },
+    'H2OHacks': {
+        badge: 'Hackathon Finalist',
+        about: `
+            <p>A project built for the H2O Hackathon, focused on water-related challenges and sustainability. The app is live on Vercel.</p>
+            <p>The hackathon pushed rapid ideation around a specific domain — it was a chance to combine technical skills with real-world impact and pitch a working product to judges.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'H2OHacks app', caption: 'Live demo screenshot' },
+        ],
+    },
+    'Open-Closed-Prediction-Model-Emilio-Michael': {
+        badge: 'Internship Project',
+        badgeColor: 'blue',
+        about: `
+            <p>A machine learning project built with Emilio that predicts whether a real-world place (restaurant, shop, etc.) is currently open or closed using metadata features — no live data feed required.</p>
+            <p>We engineered scalable features from place metadata and trained a classification model on labeled data. The goal was accuracy at scale: making reliable open/closed calls across many locations without manual lookups.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'Model prediction output', caption: 'Prediction results on test set' },
+        ],
+    },
+    'Code-Performance-Analyzer': {
+        about: `
+            <p>A Visual Studio extension that uses a local small language model to analyze the time and space complexity of Python code directly in the editor.</p>
+            <p>Highlight a function, run the analyzer, and get an instant complexity breakdown without leaving VS Code. Keeping the model local means no API calls and no data leaving your machine.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'VS Code extension panel', caption: 'Complexity analysis in the editor' },
+        ],
+    },
+    'HackDay': {
+        about: `
+            <p>A mini hackathon project built under tight time constraints. The focus was on scoping a real problem quickly, building just enough to demonstrate the idea, and shipping something functional by the deadline.</p>
+            <p>It's a good reminder that constraints breed creativity — some of the best decisions came from having no time to overthink them.</p>
+        `,
+        screenshots: [
+            // { src: 'https://...', alt: 'HackDay prototype', caption: 'Working build from the event' },
+        ],
+    },
+    // Add more repos below:
+    // 'repo-name': {
+    //     about: `<p>Your write-up here.</p>`,
+    //     screenshots: [{ src: 'path/or/url', alt: 'description', caption: 'optional caption' }],
+    // },
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(location.search);
     const repoName = params.get('repo');
@@ -26,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const updatedDate = new Date(repo.updated_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
 
+            const detail = projectDetails[repo.name] || {};
+
             const liveBtn = repo.homepage
                 ? `<a href="${repo.homepage}" target="_blank" rel="noopener noreferrer" class="btn-primary">Live Demo →</a>`
                 : '';
@@ -39,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="detail-badge">⑂ ${repo.forks_count}</span>
                             <span class="detail-date">Last updated ${updatedDate}</span>
                         </div>
+                        ${detail.badge ? `<span class="project-badge detail-hero-badge${detail.badgeColor ? ` badge-${detail.badgeColor}` : ''}">${escapeHtml(detail.badge)}</span>` : ''}
                         <h1 class="detail-title">${escapeHtml(displayName)}</h1>
                         <p class="detail-desc">${escapeHtml(repo.description || 'No description provided.')}</p>
                         <div class="detail-actions">
@@ -58,23 +143,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="detail-section fade-up">
                         <h2 class="detail-section-title">About This Project</h2>
                         <div class="detail-writeup glass-panel">
-                            <p class="detail-placeholder">
-                                ✏️  This is where your write-up goes. Describe what the project does, why you built it,
-                                what problems it solves, and anything interesting about how you built it.
-                                You can edit <code>project-detail.js</code> to add custom descriptions per repo.
-                            </p>
+                            ${detail.about || `<p class="detail-placeholder">No write-up yet. Add one in <code>project-detail.js</code> under <code>${repo.name}</code>.</p>`}
                         </div>
                     </div>
 
+                    ${detail.screenshots && detail.screenshots.length ? `
                     <div class="detail-section fade-up">
                         <h2 class="detail-section-title">Screenshots / Demo</h2>
-                        <div class="detail-screenshots glass-panel">
-                            <p class="detail-placeholder">
-                                📸  Add screenshots or GIFs of your project here.
-                                You can drop <code>&lt;img&gt;</code> tags or embed a video.
-                            </p>
+                        <div class="detail-screenshots">
+                            ${detail.screenshots.map(s => `
+                                <figure class="screenshot-figure glass-panel">
+                                    <img src="${s.src}" alt="${escapeHtml(s.alt)}" loading="lazy">
+                                    ${s.caption ? `<figcaption>${escapeHtml(s.caption)}</figcaption>` : ''}
+                                </figure>
+                            `).join('')}
                         </div>
-                    </div>
+                    </div>` : ''}
                 </div>
             `;
 
